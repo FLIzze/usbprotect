@@ -3,7 +3,6 @@
 #needs root to be used 
 
 export DISPLAY=":0"
-password=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
 directory="/dev/input/by-id"
 nmbtry="0"
@@ -19,14 +18,15 @@ do
 	#passwordBool=$(cat /home/abel/Documents/scripts/usbProtect/usb.txt | cut -d " " -f1)
 	#nmbtry=$(cat /home/abel/Documents/scripts/usbProtect/usb.txt | cut -d " " -f2)
 	logs=/var/log/usbprotect/
-	usbBus=$(lsusb | grep Storage | cut -d " " -f2 | cut -d "0" -f3)
-	usbDevice=$(lsusb | grep Drive | cut -d " " -f4 | cut -d ":" -f1 | cut -d "0" -f3)
+	usbBusStorage=$(lsusb | grep -i Storage | cut -d " " -f2 | cut -d "0" -f3)
+	usbBusFlash=$(lsusb | grep -i Flash | cut -d " " -f2 | cut -d "0" -f3)
+	usbBusDrive=$(lsusb | grep -i Drive | cut -d " " -f2 | cut -d "0" -f3)
 
 	#echo "$checkUsb"
 	#echo $usbBus
 	#echo $usbDevice
 
-	if [[ -n $usbBus ]]
+	if [[ -n $usbBusStorage ]] || [[ -n $usbBusFlash ]] || [[ -n $usbBusDrive ]]
 	then
 		#echo usb found
 		if [[ $nmbtry == "0" ]]
@@ -56,16 +56,16 @@ do
 				echo $passwordInstall
 				if [[ $passwordUser == $passwordInstall ]]
 				then
-					zenity --info
 					nmbtry="1"
 					passwordBool="true"
 					echo $(date '+[%Y:%m:%d|%H-%M-%S]') good password | tee -a $logs/logs.txt
+					zenity --info
 				else
-					zenity --error
 					nmbtry="1"
 					passwordBool="false"
 					fswebcam -q -r 1920 /var/log/usbprotect/pics/pic%Y-%m-%d_%H:%M:%S.png
 					echo $(date '+[%Y:%m:%d|%H-%M-%S]') wrong password | tee -a $logs/logs.txt
+					zenity --error
 				fi
 			else
 				echo unplug the usbKey to try again
