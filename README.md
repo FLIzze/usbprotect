@@ -1,6 +1,6 @@
 ## Welcome to usb protect
 
-### To install this script you just need to do one of the following step:
+### To install this script you just need to do one of the following steps:
 ``bash /install.sh``
 or
 ``chmod +x install.sh``
