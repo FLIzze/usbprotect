@@ -4,6 +4,7 @@
 
 export DISPLAY=":0"
 password=363f821d642863331cafe5ef674a50c8a4a4d4dd2c312cd36aad5f6e21f757bd
+password=363f821d642863331cafe5ef674a50c8a4a4d4dd2c312cd36aad5f6e21f757bd
 
 directory="/dev/input/by-id"
 nmbtry="0"
