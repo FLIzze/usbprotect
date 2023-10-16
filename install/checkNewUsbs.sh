@@ -18,6 +18,7 @@ do
 	usbBusStorage=$(lsusb | grep -i Storage | cut -d " " -f2 | cut -d "0" -f3)
 	usbBusFlash=$(lsusb | grep -i Flash | cut -d " " -f2 | cut -d "0" -f3)
 	usbBusDrive=$(lsusb | grep -i Drive | cut -d " " -f2 | cut -d "0" -f3)
+ 	usbBusKingston=$(lsusb | grep -i Kingston | cut -d " " -f2 | cut -d "0" -f3)
 
 	usbBus=""
 
@@ -30,6 +31,9 @@ do
 	elif [[ -n $usbBusDrive ]]
 	then
 		usbBus=$usbBusDrive
+  	elif [[ -n $usbBusKingston ]]
+   	then
+    		usbBus=$usbBusKingston
 	fi
 
 	#echo "$checkUsb"
