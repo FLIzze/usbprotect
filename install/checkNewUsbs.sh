@@ -27,7 +27,7 @@ do
 		usbBus=$usbBusStorage
 	elif [[ -n $usbBusFlash ]]
 	then
-		usbBus=$usbBusStorage
+		usbBus=$usbBusFlash
 	elif [[ -n $usbBusDrive ]]
 	then
 		usbBus=$usbBusDrive
